@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import moviesServices from "../services/moviesServices";
+import moviesServices from "../services/moviesService";
 
 const moviesController = {
   getAll: (req: Request, res: Response) => {

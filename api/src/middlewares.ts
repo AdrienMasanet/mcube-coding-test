@@ -3,7 +3,8 @@ import cors from "cors";
 import { Express } from "express";
 
 import { WEBAPP_DOMAIN, WEBAPP_PORT, WEBAPP_PROTOCOL } from "./config";
-import moviesRoutes from "./routes/moviesRoutes";
+import moviesRouter from "./routes/moviesRoutes";
+import usersRouter from "./routes/usersRoutes";
 
 const setupMiddlewares = (app: Express) => {
   // Config middlewares
@@ -13,7 +14,7 @@ const setupMiddlewares = (app: Express) => {
   );
 
   // Route middlewares
-  app.use("/movies", moviesRoutes);
+  app.use("/movies", moviesRouter);
 
   console.log("👮 Middlewares set up successfully");
 };
