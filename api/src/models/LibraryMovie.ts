@@ -8,6 +8,7 @@ interface LibraryMovie {
   releaseDate?: Date;
   userId: ObjectId;
   tmdbMovieId: number;
+  rating?: number;
   createdAt: Date;
 }
 
