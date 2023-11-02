@@ -1,22 +1,9 @@
-import cors from "cors";
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
+
+import setupMiddlewares from "./middlewares";
+import startExpressServer from "./server";
 
 const app: Express = express();
 
-app.use(
-  cors({
-    origin: `http://localhost:${
-      process.env.APP_PORT ? parseInt(process.env.APP_PORT) : 5173
-    }`,
-  }),
-);
-
-app.get("/", (req: Request, res: Response) => {
-  res.json({ it: "works" });
-});
-
-const port = process.env.API_PORT ? parseInt(process.env.API_PORT) : 3000;
-
-app.listen(port, () => {
-  console.log(`🤘 Express server is running at http://localhost:${port}`);
-});
+setupMiddlewares(app);
+startExpressServer(app);
