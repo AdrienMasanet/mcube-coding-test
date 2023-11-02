@@ -13,6 +13,17 @@ const meController = {
     }
   },
 
+  getMovieLibrary: async (req: Request, res: Response) => {
+    try {
+      const movieLibrary = await usersService.getUserMovieLibrary(
+        res.locals["userid"] as string,
+      );
+      return res.json(movieLibrary);
+    } catch {
+      return res.status(500).send("Error while fetching your movie library");
+    }
+  },
+
   addMovieToLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = req.body.movieId as number;

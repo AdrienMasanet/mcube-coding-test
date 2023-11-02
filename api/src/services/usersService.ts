@@ -51,6 +51,23 @@ const usersService = {
     return user;
   },
 
+  getUserMovieLibrary: async (
+    userId: string,
+  ): Promise<LibraryMovie[] | null> => {
+    const db = getDb();
+
+    const result = await db
+      .collection(DbCollections.USERS)
+      .aggregate([
+        { $match: { _id: new ObjectId(userId) } }, // Trouve l'utilisateur avec l'ID spécifié
+        { $unwind: "$movieLibrary" }, // Décompose le tableau movieLibrary en documents individuels
+        { $replaceRoot: { newRoot: "$movieLibrary" } }, // Remplace le document racine par les éléments de movieLibrary
+      ])
+      .toArray();
+
+    return result.length ? (result as LibraryMovie[]) : null;
+  },
+
   addMovieToUserLibrary: async (
     userId: string,
     tmdbMovieId: number,

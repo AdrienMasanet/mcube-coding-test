@@ -14,6 +14,7 @@ meRouter.use((req: Request, res: Response, next) => {
 });
 
 meRouter.get("/", meController.getMe);
+meRouter.get("/my-library", meController.getMovieLibrary);
 meRouter.post("/add-movie-to-library", meController.addMovieToLibrary);
 
 export default meRouter;
