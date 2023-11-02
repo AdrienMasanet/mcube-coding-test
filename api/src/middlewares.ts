@@ -14,6 +14,8 @@ const setupMiddlewares = (app: Express) => {
 
   // Route middlewares
   app.use("/movies", moviesRoutes);
+
+  console.log("👮 Middlewares set up successfully");
 };
 
 export default setupMiddlewares;

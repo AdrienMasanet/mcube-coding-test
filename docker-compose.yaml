@@ -41,3 +41,5 @@ services:
     environment:
       - API_PORT=${API_PORT}
       - APP_PORT=${APP_PORT}
+      - MONGO_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
