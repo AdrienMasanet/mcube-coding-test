@@ -1,0 +1,10 @@
+version: "3.0"
+
+services:
+  api:
+    build: ./api/
+    container_name: mcube-masanet-coding-test-api
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    command: npm run start
