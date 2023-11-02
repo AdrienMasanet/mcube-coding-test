@@ -12,6 +12,7 @@ const meController = {
       return res.status(500).send("Error while fetching your data");
     }
   },
+
   addMovieToLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = req.body.movieId as number;

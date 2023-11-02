@@ -12,6 +12,7 @@ const usersController = {
       return res.status(500).send("Error while wiping then seeding fake users");
     }
   },
+
   getUsers: async (req: Request, res: Response) => {
     try {
       const users = await usersService.getUsers();

@@ -13,6 +13,7 @@ const usersService = {
 
     await db.collection(DbCollections.USERS).deleteMany({});
   },
+
   seedFakeUsers: async (): Promise<void> => {
     const db = getDb();
 
@@ -25,6 +26,7 @@ const usersService = {
 
     await db.collection(DbCollections.USERS).insertMany(fakeUsers);
   },
+
   getUsers: async (): Promise<User[]> => {
     const db = getDb();
 
@@ -35,6 +37,7 @@ const usersService = {
 
     return users;
   },
+
   getUserById: async (userId: string): Promise<User | null> => {
     const db = getDb();
 
@@ -47,6 +50,7 @@ const usersService = {
 
     return user;
   },
+
   addMovieToUserLibrary: async (
     userId: string,
     tmdbMovieId: number,

@@ -10,6 +10,7 @@ const moviesServices = {
     const result: TMDBMovieBase[] = await response.json();
     return result;
   },
+
   getMovieById: async (tmdbMovieId: number): Promise<TMDBMovieDetails> => {
     const response = await fetch(
       `${TMDB_BASE_URL}movie/${tmdbMovieId}?api_key=${TMDB_API_KEY}`,
