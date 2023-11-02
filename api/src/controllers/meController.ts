@@ -27,7 +27,7 @@ const meController = {
   addMovieToLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = parseInt(req.body.movieId);
-      if (!movieId) return res.status(400).send("No movieId was given");
+      if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
       await usersService.addMovieToUserLibrary(
         res.locals["userid"] as string,
         movieId,
@@ -41,7 +41,7 @@ const meController = {
   removeMovieFromLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = parseInt(req.query.movieId as string);
-      if (!movieId) return res.status(400).send("No movieId was given");
+      if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
       await usersService.removeMovieFromUserLibrary(
         res.locals["userid"] as string,
         movieId,
