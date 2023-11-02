@@ -37,6 +37,22 @@ const meController = {
       return res.status(500).send("Error while adding movie to your library");
     }
   },
+
+  removeMovieFromLibrary: async (req: Request, res: Response) => {
+    try {
+      const movieId: number = parseInt(req.query.movieId as string);
+      if (!movieId) return res.status(400).send("No movieId was given");
+      await usersService.removeMovieFromUserLibrary(
+        res.locals["userid"] as string,
+        movieId,
+      );
+      return res.send("Movie removed from your library !");
+    } catch {
+      return res
+        .status(500)
+        .send("Error while removing movie from your library");
+    }
+  },
 };
 
 export default meController;

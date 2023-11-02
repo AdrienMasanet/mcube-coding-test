@@ -103,6 +103,28 @@ const usersService = {
       );
     }
   },
+
+  removeMovieFromUserLibrary: async (
+    userId: string,
+    tmdbMovieId: number,
+  ): Promise<void> => {
+    const db = getDb();
+
+    const result = await db.collection(DbCollections.USERS).updateOne(
+      {
+        _id: new ObjectId(userId),
+      },
+      {
+        $pull: { movieLibrary: { tmdbMovieId: tmdbMovieId } },
+      },
+    );
+
+    if (result.modifiedCount === 0) {
+      throw new Error(
+        `Failed to remove movie from user ${userId}'s library. The user id could be wrong or the movie may not be in the library`,
+      );
+    }
+  },
 };
 
 export default usersService;
