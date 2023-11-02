@@ -19,6 +19,15 @@ const moviesServices = {
     const result = await response.json();
     return result;
   },
+
+  getRelatedMovies: async (tmdbMovieId: number): Promise<TMDBMovieDetails> => {
+    const response = await fetch(
+      `${TMDB_BASE_URL}movie/${tmdbMovieId}/similar?api_key=${TMDB_API_KEY}`,
+    );
+    if (response.status !== 200) throw new Error("TMDB request failed");
+    const result = await response.json();
+    return result;
+  },
 };
 
 export default moviesServices;

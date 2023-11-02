@@ -14,6 +14,17 @@ const moviesController = {
       return res.status(500).send("Error while searching for movies");
     }
   },
+
+  getRelatedMovies: async (req: Request, res: Response) => {
+    try {
+      const movieId: number = parseInt(req.params.movieId as string);
+      if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
+      const result = await moviesServices.getRelatedMovies(movieId);
+      return res.json(result);
+    } catch {
+      return res.status(500).send("Error while searching for related movies");
+    }
+  },
 };
 
 export default moviesController;
