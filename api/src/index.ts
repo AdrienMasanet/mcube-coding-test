@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 
-import setupDatabase from "./database";
+import { setupDatabase } from "./database";
 import setupMiddlewares from "./middlewares";
 import startExpressServer from "./server";
 
