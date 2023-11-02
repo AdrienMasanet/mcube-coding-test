@@ -26,7 +26,7 @@ const meController = {
 
   addMovieToLibrary: async (req: Request, res: Response) => {
     try {
-      const movieId: number = req.body.movieId as number;
+      const movieId: number = parseInt(req.body.movieId);
       if (!movieId) return res.status(400).send("No movieId was given");
       await usersService.addMovieToUserLibrary(
         res.locals["userid"] as string,
