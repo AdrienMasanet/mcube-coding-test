@@ -12,6 +12,19 @@ const meController = {
       return res.status(500).send("Error while fetching your data");
     }
   },
+  addMovieToLibrary: async (req: Request, res: Response) => {
+    try {
+      const movieId: number = req.body.movieId as number;
+      if (!movieId) return res.status(400).send("No movieId was given");
+      await usersService.addMovieToUserLibrary(
+        res.locals["userid"] as string,
+        movieId,
+      );
+      return res.send("Movie added to your library !");
+    } catch {
+      return res.status(500).send("Error while adding movie to your library");
+    }
+  },
 };
 
 export default meController;
