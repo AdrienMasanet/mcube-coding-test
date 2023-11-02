@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 import { DbCollections } from "../config";
 import { getDb } from "../database";
 import User from "../models/User";
@@ -29,6 +31,15 @@ const usersService = {
       .toArray()) as User[];
 
     return users;
+  },
+  getUserById: async (userId: string): Promise<User | null> => {
+    const db = getDb();
+
+    const user: User | null = (await db
+      .collection(DbCollections.USERS)
+      .findOne({ _id: new ObjectId(userId) })) as User;
+
+    return user;
   },
 };
 
