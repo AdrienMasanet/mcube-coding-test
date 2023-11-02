@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 interface MovieRating {
-  _id?: string;
+  _id?: ObjectId;
   libraryMovieId: string;
   userId: string;
   rating: number;

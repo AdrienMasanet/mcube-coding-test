@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 interface User {
-  _id?: string;
+  _id?: ObjectId;
   name: string;
 }
 

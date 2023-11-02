@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 interface LibraryMovie {
-  _id?: string;
+  _id?: ObjectId;
   title: string;
   overview: string;
   posterPath: string;
