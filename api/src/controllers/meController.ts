@@ -9,7 +9,7 @@ const meController = {
       if (!me) return res.status(400).send("No user was found");
       return res.json(me);
     } catch {
-      return res.send("Error while fetching your data");
+      return res.status(500).send("Error while fetching your data");
     }
   },
 };

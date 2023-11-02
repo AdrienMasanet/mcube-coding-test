@@ -8,7 +8,7 @@ const meRouter: Router = Router();
 // ensuring easy user identification for "me" endpoints logic.
 meRouter.use((req: Request, res: Response, next) => {
   const userId = req.headers["userid"];
-  if (!userId) return res.status(401).send("Pleased, identify yourself !");
+  if (!userId) return res.status(401).send("Please, identify yourself !");
   res.locals["userid"] = userId;
   next();
 });

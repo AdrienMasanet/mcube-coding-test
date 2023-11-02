@@ -9,7 +9,7 @@ const usersController = {
       await usersService.seedFakeUsers();
       return res.send("Fake users seeded successfully");
     } catch {
-      return res.send("Error while wiping then seeding fake users");
+      return res.status(500).send("Error while wiping then seeding fake users");
     }
   },
   getUsers: async (req: Request, res: Response) => {
@@ -17,7 +17,7 @@ const usersController = {
       const users = await usersService.getUsers();
       return res.json(users);
     } catch {
-      return res.send("Error while fetching users");
+      return res.status(500).send("Error while fetching users");
     }
   },
 };
