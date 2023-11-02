@@ -4,6 +4,6 @@ import usersController from "../controllers/usersController";
 
 const usersRouter: Router = Router();
 
-usersRouter.get("/seed", usersController.seedFakeUsers);
+usersRouter.post("/seed", usersController.seedFakeUsers);
 
 export default usersRouter;
