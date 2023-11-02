@@ -15,6 +15,16 @@ const usersService = {
 
     await db.collection(DbCollections.USERS).insertMany(fakeUsers);
   },
+  getUsers: async (): Promise<User[]> => {
+    const db = getDb();
+
+    const users: User[] = (await db
+      .collection(DbCollections.USERS)
+      .find()
+      .toArray()) as User[];
+
+    return users;
+  },
 };
 
 export default usersService;
