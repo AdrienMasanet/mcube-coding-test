@@ -30,7 +30,7 @@ const usersService = {
 
     const users: User[] = (await db
       .collection(DbCollections.USERS)
-      .find()
+      .find({}, { projection: { movieLibrary: 0 } })
       .toArray()) as User[];
 
     return users;
@@ -40,7 +40,10 @@ const usersService = {
 
     const user: User | null = (await db
       .collection(DbCollections.USERS)
-      .findOne({ _id: new ObjectId(userId) })) as User;
+      .findOne(
+        { _id: new ObjectId(userId) },
+        { projection: { movieLibrary: 0 } },
+      )) as User;
 
     return user;
   },
