@@ -1,5 +1,5 @@
-import express, { Express, Request, Response } from "express";
 import cors from "cors";
+import express, { Express, Request, Response } from "express";
 
 const app: Express = express();
 
@@ -8,7 +8,7 @@ app.use(
     origin: `http://localhost:${
       process.env.APP_PORT ? parseInt(process.env.APP_PORT) : 5173
     }`,
-  })
+  }),
 );
 
 app.get("/", (req: Request, res: Response) => {
