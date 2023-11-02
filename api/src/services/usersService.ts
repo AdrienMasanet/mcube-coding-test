@@ -1,9 +1,10 @@
 import { ObjectId } from "mongodb";
 
-import { DbCollections, TMDB_IMAGES_PATH } from "../config";
+import { TMDB_IMAGES_PATH } from "../config";
 import { getDb } from "../database";
 import LibraryMovie from "../models/LibraryMovie";
 import User from "../models/User";
+import DbCollections from "../types/DbCollections";
 import { TMDBMovieDetails } from "../types/TMDBApi";
 import moviesServices from "./moviesService";
 
@@ -59,9 +60,9 @@ const usersService = {
     const result = await db
       .collection(DbCollections.USERS)
       .aggregate([
-        { $match: { _id: new ObjectId(userId) } }, // Trouve l'utilisateur avec l'ID spécifié
-        { $unwind: "$movieLibrary" }, // Décompose le tableau movieLibrary en documents individuels
-        { $replaceRoot: { newRoot: "$movieLibrary" } }, // Remplace le document racine par les éléments de movieLibrary
+        { $match: { _id: new ObjectId(userId) } },
+        { $unwind: "$movieLibrary" },
+        { $replaceRoot: { newRoot: "$movieLibrary" } },
       ])
       .toArray();
 

@@ -15,10 +15,6 @@ export const MONGO_ROOT_PASSWORD = process.env.MONGO_ROOT_PASSWORD;
 export const MONGO_DOMAIN = "db";
 export const MONGO_PORT = 27017;
 
-export enum DbCollections {
-  USERS = "users",
-}
-
 export const TMDB_BASE_URL = "https://api.themoviedb.org/3/";
 export const TMDB_API_KEY = process.env.TMDB_API_KEY;
 export const TMDB_IMAGES_PATH = "https://image.tmdb.org/t/p/original/";
