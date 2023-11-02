@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import usersService from "../services/usersService";
+import MoviesSortBy from "../types/MoviesSortBy";
 
 const meController = {
   getMe: async (req: Request, res: Response) => {
@@ -15,9 +16,28 @@ const meController = {
 
   getMovieLibrary: async (req: Request, res: Response) => {
     try {
+      const queryOrderBy: string = req.query.orderBy as string;
+
+      let orderBy: MoviesSortBy;
+      switch (queryOrderBy) {
+        case "added-date":
+          orderBy = MoviesSortBy.ADDED_DATE;
+          break;
+        case "release-date":
+          orderBy = MoviesSortBy.RELEASE_DATE;
+          break;
+        case "title":
+          orderBy = MoviesSortBy.TITLE;
+          break;
+        default:
+          orderBy = MoviesSortBy.ADDED_DATE;
+      }
+
       const movieLibrary = await usersService.getUserMovieLibrary(
         res.locals["userid"] as string,
+        orderBy,
       );
+
       return res.json(movieLibrary);
     } catch {
       return res.status(500).send("Error while fetching your movie library");

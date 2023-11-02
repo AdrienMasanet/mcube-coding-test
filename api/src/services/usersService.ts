@@ -5,6 +5,7 @@ import { getDb } from "../database";
 import LibraryMovie from "../models/LibraryMovie";
 import User from "../models/User";
 import DbCollections from "../types/DbCollections";
+import MoviesSortBy from "../types/MoviesSortBy";
 import { TMDBMovieDetails } from "../types/TMDBApi";
 import moviesServices from "./moviesService";
 
@@ -54,8 +55,11 @@ const usersService = {
 
   getUserMovieLibrary: async (
     userId: string,
+    orderBy: MoviesSortBy,
   ): Promise<LibraryMovie[] | null> => {
     const db = getDb();
+
+    const sortDirection = orderBy === MoviesSortBy.TITLE ? 1 : -1;
 
     const result = await db
       .collection(DbCollections.USERS)
@@ -64,6 +68,7 @@ const usersService = {
         { $unwind: "$movieLibrary" },
         { $replaceRoot: { newRoot: "$movieLibrary" } },
       ])
+      .sort({ [orderBy]: sortDirection })
       .toArray();
 
     return result.length ? (result as LibraryMovie[]) : null;
