@@ -20,5 +20,6 @@ meRouter.delete(
   "/remove-movie-from-library",
   meController.removeMovieFromLibrary,
 );
+meRouter.patch("/rate-library-movie", meController.rateLibraryMovie);
 
 export default meRouter;

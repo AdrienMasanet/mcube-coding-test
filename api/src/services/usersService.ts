@@ -131,6 +131,34 @@ const usersService = {
       );
     }
   },
+
+  rateMovieFromUserLibrary: async (
+    userId: string,
+    tmdbMovieId: number,
+    rating: number,
+  ): Promise<void> => {
+    const db = getDb();
+
+    if (rating < 0 || rating > 5) {
+      throw new Error("Rating must be between 0 and 5");
+    }
+
+    const result = await db.collection(DbCollections.USERS).updateOne(
+      {
+        _id: new ObjectId(userId),
+        "movieLibrary.tmdbMovieId": tmdbMovieId,
+      },
+      {
+        $set: { "movieLibrary.$.rating": rating },
+      },
+    );
+
+    if (result.modifiedCount === 0) {
+      throw new Error(
+        `Failed to rate movie in user ${userId}'s library. The user id could be wrong, the movie may not be in the library, or the rating is the same`,
+      );
+    }
+  },
 };
 
 export default usersService;

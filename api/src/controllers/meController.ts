@@ -73,6 +73,27 @@ const meController = {
         .send("Error while removing movie from your library");
     }
   },
+
+  rateLibraryMovie: async (req: Request, res: Response) => {
+    try {
+      const movieId: number = parseInt(req.body.movieId);
+      const rating: number = parseInt(req.body.rating);
+
+      if (isNaN(movieId) || isNaN(rating) || rating < 0 || rating > 5) {
+        return res.status(400).send("Invalid movieId or rating");
+      }
+
+      await usersService.rateMovieFromUserLibrary(
+        res.locals["userid"] as string,
+        movieId,
+        rating,
+      );
+
+      return res.send("Movie rated successfully !");
+    } catch (error) {
+      return res.status(500).send("Error while rating movie in your library");
+    }
+  },
 };
 
 export default meController;
