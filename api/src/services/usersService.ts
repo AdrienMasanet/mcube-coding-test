@@ -3,6 +3,11 @@ import { getDb } from "../database";
 import User from "../models/User";
 
 const usersService = {
+  wipeUsers: async (): Promise<void> => {
+    const db = getDb();
+
+    await db.collection(DbCollections.USERS).deleteMany({});
+  },
   seedFakeUsers: async (): Promise<void> => {
     const db = getDb();
 

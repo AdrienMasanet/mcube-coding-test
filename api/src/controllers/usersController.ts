@@ -3,12 +3,13 @@ import { Request, Response } from "express";
 import usersService from "../services/usersService";
 
 const usersController = {
-  seedFakeUsers: async (req: Request, res: Response) => {
+  wipeAndSeedFakeUsers: async (req: Request, res: Response) => {
     try {
+      await usersService.wipeUsers();
       await usersService.seedFakeUsers();
       return res.send("Fake users seeded successfully");
     } catch {
-      return res.send("Error while seeding fake users");
+      return res.send("Error while wiping then seeding fake users");
     }
   },
   getUsers: async (req: Request, res: Response) => {
