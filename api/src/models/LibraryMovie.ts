@@ -5,8 +5,8 @@ interface LibraryMovie {
   title: string;
   overview: string;
   posterPath: string;
-  releaseDate: Date;
-  userId: string;
+  releaseDate?: Date;
+  userId: ObjectId;
   tmdbMovieId: number;
   createdAt: Date;
 }
