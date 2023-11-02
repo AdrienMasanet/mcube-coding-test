@@ -4,6 +4,6 @@ import moviesController from "../controllers/moviesController";
 
 const moviesRouter: Router = Router();
 
-moviesRouter.get("/", moviesController.getAll);
+moviesRouter.get("/", moviesController.getMoviesBySearch);
 
 export default moviesRouter;
