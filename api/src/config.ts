@@ -14,3 +14,7 @@ export const MONGO_ROOT_USERNAME = process.env.MONGO_ROOT_USERNAME;
 export const MONGO_ROOT_PASSWORD = process.env.MONGO_ROOT_PASSWORD;
 export const MONGO_DOMAIN = "db";
 export const MONGO_PORT = 27017;
+
+export enum DbCollections {
+  USERS = "users",
+}
