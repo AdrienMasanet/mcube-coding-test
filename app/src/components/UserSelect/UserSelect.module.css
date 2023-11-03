@@ -8,6 +8,7 @@
   font-size: 1.1em;
   background-color: transparent;
   color: var(--color-white);
+  text-align: center;
 }
 
 .option {

@@ -1,8 +1,20 @@
-body {
+html,
+body,
+#root {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: "GT Walsheim Pro", sans-serif;
   background-color: var(--color-background);
   color: var(--color-white);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 select {
