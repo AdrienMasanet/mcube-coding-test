@@ -67,7 +67,7 @@ const meController = {
         res.locals["userid"] as string,
         movieId,
       );
-      return res.status(204);
+      return res.status(204).send();
     } catch {
       return res
         .status(500)
