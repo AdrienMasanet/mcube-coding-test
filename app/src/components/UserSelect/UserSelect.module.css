@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+  background-color: var(--color-dark-surface);
+}
+
+.select {
+  padding: 0.1px 0.25px;
+  font-size: 1.1em;
+  background-color: transparent;
+  color: var(--color-white);
+}
+
+.option {
+  font-weight: 200;
+}
