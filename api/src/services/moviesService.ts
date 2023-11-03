@@ -23,8 +23,7 @@ const moviesServices = {
           }) as MovieBase,
       );
       return parsedMovies;
-    } catch (e) {
-      console.log(e);
+    } catch {
       return [];
     }
   },
