@@ -1,5 +1,5 @@
 import MovieDetailsPage from "./components/pages/MovieDetailsPage/MovieDetailsPage";
-import MovieSearchPage from "./components/pages/MovieSearchPage/MovieDetailsPage";
+import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage";
 import PersonalLibraryPage from "./components/pages/PersonalLibraryPage/PersonalLibraryPage";
 import Route from "./types/Route";
 
