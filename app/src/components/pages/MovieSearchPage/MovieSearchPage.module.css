@@ -1,0 +1,19 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nosearchcontainer {
+  margin: auto;
+  text-align: center;
+  font-weight: 200;
+}
+
+.nosearchtext1 {
+  font-size: 3em;
+}
+
+.nosearchtext2 {
+  font-size: 1.5em;
+}
