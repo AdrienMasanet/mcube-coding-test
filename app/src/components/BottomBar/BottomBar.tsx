@@ -11,7 +11,11 @@ const BottomBar = () => {
         {routes.map((route: Route) => {
           if (route.linkText)
             return (
-              <NavLink to={route.path} className={styles.navlink}>
+              <NavLink
+                key={route.path}
+                to={route.path}
+                className={styles.navlink}
+              >
                 {route.linkText}
               </NavLink>
             );
