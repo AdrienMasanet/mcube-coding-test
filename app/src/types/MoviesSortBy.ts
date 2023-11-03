@@ -1,6 +1,6 @@
 enum MoviesSortBy {
-  ADDED_DATE = "createdAt",
-  RELEASE_DATE = "releaseDate",
+  ADDED_DATE = "added-date",
+  RELEASE_DATE = "release-date",
   TITLE = "title",
 }
 
