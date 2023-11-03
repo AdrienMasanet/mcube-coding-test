@@ -62,7 +62,6 @@ export const MovieLibraryProvider = ({
     try {
       const ratedLibraryMovie: LibraryMovie | null =
         await usersService.rateMovieFromLibrary(tmdbMovieId, rating);
-      console.log(rateLibraryMovie);
       if (ratedLibraryMovie) {
         setMovieLibrary(
           movieLibrary.map((movie) =>
