@@ -118,6 +118,37 @@ const usersService = {
       throw new Error("API request failed");
     }
   },
+
+  rateMovieFromLibrary: async (
+    tmdbMovieId: number,
+    rating: number,
+  ): Promise<LibraryMovie | null> => {
+    try {
+      const currentUserId = localStorage.getItem("currentUserId");
+      if (!currentUserId) return null;
+
+      const response = await fetch(
+        `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/me/rate-library-movie`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            userid: currentUserId,
+          },
+          body: JSON.stringify({
+            movieId: tmdbMovieId,
+            rating: rating,
+          }),
+        },
+      );
+
+      if (response.status !== 200) throw new Error("API request failed");
+      const result: LibraryMovie = await response.json();
+      return result;
+    } catch {
+      throw new Error("API request failed");
+    }
+  },
 };
 
 export default usersService;
