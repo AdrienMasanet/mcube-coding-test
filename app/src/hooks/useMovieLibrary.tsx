@@ -7,11 +7,16 @@ import {
 
 const useMovieLibrary = () => {
   const movieLibrary = useContext(MovieLibraryContext);
-  const { addToLibrary, removeFromLibrary, setSortingOrder } = useContext(
-    MovieLibraryActionsContext,
-  );
+  const { addToLibrary, removeFromLibrary, sortingOrder, setSortingOrder } =
+    useContext(MovieLibraryActionsContext);
 
-  return { movieLibrary, addToLibrary, removeFromLibrary, setSortingOrder };
+  return {
+    movieLibrary,
+    addToLibrary,
+    removeFromLibrary,
+    sortingOrder,
+    setSortingOrder,
+  };
 };
 
 export default useMovieLibrary;
