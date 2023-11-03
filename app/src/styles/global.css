@@ -1,3 +1,7 @@
+* {
+  font-family: "GT Walsheim Pro", sans-serif;
+}
+
 html,
 body,
 #root {
@@ -7,7 +11,6 @@ body,
 }
 
 body {
-  font-family: "GT Walsheim Pro", sans-serif;
   background-color: var(--color-background);
   color: var(--color-white);
 }
