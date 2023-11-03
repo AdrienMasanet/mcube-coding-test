@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: "GT Walsheim Pro", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-white);
+}
+
+select {
+  background-color: var(--color-white);
+  border-radius: var(--default-border-radius);
+}
