@@ -15,7 +15,7 @@
 
 .poster {
   max-width: 100%;
-  max-height: 40vh;
+  max-height: 35vh;
   object-fit: cover;
   border-radius: var(--default-border-radius);
   box-shadow: var(--shadow-lg);
