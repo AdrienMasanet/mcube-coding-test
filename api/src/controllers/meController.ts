@@ -84,13 +84,13 @@ const meController = {
         return res.status(400).send("Invalid movieId or rating");
       }
 
-      await usersService.rateMovieFromUserLibrary(
+      const ratedLibraryMovie = await usersService.rateMovieFromUserLibrary(
         res.locals["userid"] as string,
         movieId,
         rating,
       );
 
-      return res.status(200).send("Movie rated successfully !");
+      return res.status(200).json(ratedLibraryMovie);
     } catch (error) {
       return res.status(500).send("Error while rating movie in your library");
     }
