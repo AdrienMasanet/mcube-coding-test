@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import { SyntheticEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import moviesService from "../../../services/moviesService";
-import { MovieBase } from "../../../types/Movie";
+import { MovieDetailed } from "../../../types/Movie";
 import styles from "./MovieDetailsPage.module.css";
+import BackButton from "../../common/BackButton/BackButton";
 
 const MovieDetailsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState<MovieBase | null>(null);
+  const [movie, setMovie] = useState<MovieDetailed | null>(null);
 
   useEffect(() => {
     if (!location.state || !location.state["tmdbMovieId"]) {
@@ -18,7 +20,7 @@ const MovieDetailsPage = () => {
 
     const fetchMovie = async () => {
       try {
-        const movieDetails = await moviesService.getMovieDetails(
+        const movieDetails: MovieDetailed = await moviesService.getMovieDetails(
           location.state["tmdbMovieId"],
         );
         setMovie(movieDetails);
@@ -31,10 +33,33 @@ const MovieDetailsPage = () => {
   }, [location.state, navigate]);
 
   if (!movie) return;
+  const handleImageErrorFallback = (
+    event: SyntheticEvent<HTMLImageElement>,
+  ) => {
+    (event.target as HTMLImageElement).src =
+      "/images/movie-poster-fallback.webp";
+  };
 
   return (
     <div className={styles.container}>
-      <p>{movie.title}</p>
+      <BackButton />
+      <h1 className={styles.title}>{movie.title}</h1>
+      <img
+        className={styles.poster}
+        src={movie.posterPath}
+        onError={handleImageErrorFallback}
+      />
+      {movie.releaseDate && (
+        <p className={styles.releasedate}>
+          Released on&nbsp;
+          {new Date(movie.releaseDate).toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}
+        </p>
+      )}
+      <p className={styles.overview}>{movie.overview}</p>
     </div>
   );
 };
