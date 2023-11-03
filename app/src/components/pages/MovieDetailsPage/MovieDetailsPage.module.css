@@ -29,3 +29,11 @@
   padding: 1em;
   border: solid 1px var(--color-dark-surface);
 }
+
+.addtolibrary {
+  padding: 0.15em 0.5em;
+  border-radius: var(--default-border-radius);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+}

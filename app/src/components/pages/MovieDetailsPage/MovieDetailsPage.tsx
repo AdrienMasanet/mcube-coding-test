@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SyntheticEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import useMovieLibrary from "../../../hooks/useMovieLibrary";
 import moviesService from "../../../services/moviesService";
 import { MovieDetailed } from "../../../types/Movie";
 import BackButton from "../../common/BackButton/BackButton";
@@ -11,6 +12,7 @@ import RelatedMovies from "./RelatedMovies/RelatedMovies";
 const MovieDetailsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { addToLibrary } = useMovieLibrary();
   const [movie, setMovie] = useState<MovieDetailed | null>(null);
 
   useEffect(() => {
@@ -61,6 +63,12 @@ const MovieDetailsPage = () => {
         </p>
       )}
       <p className={styles.overview}>{movie.overview}</p>
+      <div
+        className={styles.addtolibrary}
+        onClick={() => addToLibrary(movie.tmdbMovieId)}
+      >
+        Add to my library
+      </div>
       <RelatedMovies movieId={movie.tmdbMovieId} />
     </div>
   );
