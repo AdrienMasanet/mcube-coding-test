@@ -4,6 +4,7 @@ import BottomBar from "./components/BottomBar/BottomBar";
 import MainContent from "./components/MainContent/MainContent";
 import TopBar from "./components/TopBar/TopBar";
 import { AuthenticationProvider } from "./context/AuthenticationContext";
+import { MovieLibraryProvider } from "./context/MovieLibraryContext";
 import { UserListProvider } from "./context/UserListContext";
 
 function App() {
@@ -11,11 +12,13 @@ function App() {
     <BrowserRouter>
       <UserListProvider>
         <AuthenticationProvider>
-          <>
-            <TopBar />
-            <MainContent />
-            <BottomBar />
-          </>
+          <MovieLibraryProvider>
+            <>
+              <TopBar />
+              <MainContent />
+              <BottomBar />
+            </>
+          </MovieLibraryProvider>
         </AuthenticationProvider>
       </UserListProvider>
     </BrowserRouter>
