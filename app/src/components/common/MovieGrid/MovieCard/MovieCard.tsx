@@ -1,4 +1,5 @@
 import { SyntheticEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { MovieBase } from "../../../../types/Movie";
 import styles from "./MovieCard.module.css";
@@ -8,6 +9,8 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
+  const navigate = useNavigate();
+
   const handleImageErrorFallback = (
     event: SyntheticEvent<HTMLImageElement>,
   ) => {
@@ -16,7 +19,14 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onClick={() =>
+        navigate("/movie-details", {
+          state: { tmdbMovieId: movie.tmdbMovieId },
+        })
+      }
+    >
       <img
         onError={handleImageErrorFallback}
         className={styles.poster}
