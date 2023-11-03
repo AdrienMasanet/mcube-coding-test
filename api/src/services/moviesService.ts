@@ -9,7 +9,9 @@ const moviesServices = {
       const response = await fetch(
         `${TMDB_BASE_URL}search/movie?query=${searchString}&api_key=${TMDB_API_KEY}`,
       );
+
       if (response.status !== 200) throw new Error("TMDB request failed");
+
       const result: TMDBResponse = await response.json();
       const parsedMovies: MovieBase[] = result.results.map(
         (tmdbMovie) =>
@@ -22,6 +24,7 @@ const moviesServices = {
             tmdbMovieId: tmdbMovie.id,
           }) as MovieBase,
       );
+
       return parsedMovies;
     } catch {
       return [];
@@ -32,7 +35,9 @@ const moviesServices = {
     const response = await fetch(
       `${TMDB_BASE_URL}movie/${tmdbMovieId}?api_key=${TMDB_API_KEY}`,
     );
+
     if (response.status !== 200) throw new Error("TMDB request failed");
+
     const result: TMDBMovieDetailed = await response.json();
     const parsedMovie: MovieDetailed = {
       title: result.title,
@@ -43,6 +48,7 @@ const moviesServices = {
         : undefined,
       tmdbMovieId: result.id,
     } as MovieDetailed;
+
     return parsedMovie;
   },
 
@@ -50,7 +56,9 @@ const moviesServices = {
     const response = await fetch(
       `${TMDB_BASE_URL}movie/${tmdbMovieId}/similar?api_key=${TMDB_API_KEY}`,
     );
+
     if (response.status !== 200) throw new Error("TMDB request failed");
+
     const result: TMDBResponse = await response.json();
     const parsedMovies: MovieBase[] = result.results.map(
       (tmdbMovie) =>
@@ -63,6 +71,7 @@ const moviesServices = {
           tmdbMovieId: tmdbMovie.id,
         }) as MovieBase,
     );
+
     return parsedMovies.slice(0, 3);
   },
 };

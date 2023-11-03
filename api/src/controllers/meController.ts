@@ -7,6 +7,7 @@ const meController = {
   getMe: async (req: Request, res: Response) => {
     try {
       const me = await usersService.getUserById(res.locals["userid"] as string);
+
       if (!me) return res.status(400).send("No user was found");
       return res.json(me);
     } catch {
@@ -47,11 +48,14 @@ const meController = {
   addMovieToLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = parseInt(req.body.movieId);
+
       if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
+
       const addedLibraryMovie = await usersService.addMovieToUserLibrary(
         res.locals["userid"] as string,
         movieId,
       );
+
       if (addedLibraryMovie) return res.status(201).json(addedLibraryMovie);
       return res.status(304);
     } catch {
@@ -62,11 +66,14 @@ const meController = {
   removeMovieFromLibrary: async (req: Request, res: Response) => {
     try {
       const movieId: number = parseInt(req.query.movieId as string);
+
       if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
+
       await usersService.removeMovieFromUserLibrary(
         res.locals["userid"] as string,
         movieId,
       );
+
       return res.status(204).send();
     } catch {
       return res

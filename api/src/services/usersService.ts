@@ -143,9 +143,7 @@ const usersService = {
       },
     );
 
-    if (updateResult.modifiedCount === 0) {
-      return null;
-    }
+    if (updateResult.modifiedCount === 0) return null;
 
     const userWithUpdatedMovie = await db
       .collection(DbCollections.USERS)

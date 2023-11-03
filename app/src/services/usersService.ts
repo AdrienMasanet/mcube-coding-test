@@ -12,6 +12,7 @@ const usersService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: User[] = await response.json();
       return result;
     } catch {
@@ -36,6 +37,7 @@ const usersService = {
 
       if (response.status === 401) return null;
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: User = await response.json();
       return result;
     } catch {
@@ -61,6 +63,7 @@ const usersService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: LibraryMovie[] = await response.json();
       return result;
     } catch {
@@ -91,6 +94,7 @@ const usersService = {
 
       if (response.status === 304) return null;
       if (response.status !== 201) throw new Error("API request failed");
+
       const result: LibraryMovie | null = await response.json();
       return result;
     } catch {
@@ -143,6 +147,7 @@ const usersService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: LibraryMovie = await response.json();
       return result;
     } catch {

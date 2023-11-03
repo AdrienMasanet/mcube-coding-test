@@ -12,6 +12,7 @@ const moviesService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: MovieBase[] = await response.json();
       return result;
     } catch {
@@ -27,6 +28,7 @@ const moviesService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: MovieDetailed = await response.json();
       return result;
     } catch {
@@ -42,6 +44,7 @@ const moviesService = {
       );
 
       if (response.status !== 200) throw new Error("API request failed");
+
       const result: MovieBase[] = await response.json();
       return result;
     } catch {
