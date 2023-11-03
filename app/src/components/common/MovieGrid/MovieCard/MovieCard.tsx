@@ -2,11 +2,11 @@ import { SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useMovieLibrary from "../../../../hooks/useMovieLibrary";
-import { MovieBase } from "../../../../types/Movie";
+import { LibraryMovie, MovieBase } from "../../../../types/Movie";
 import styles from "./MovieCard.module.css";
 
 type MovieCardProps = {
-  movie: MovieBase;
+  movie: MovieBase | LibraryMovie;
   personalLibraryMovieCard?: boolean;
 };
 
@@ -38,9 +38,14 @@ const MovieCard = ({ movie, personalLibraryMovieCard }: MovieCardProps) => {
       }
     >
       {personalLibraryMovieCard && (
-        <div className={styles.removebutton} onClick={handleRemoveFromLibrary}>
-          ✖
-        </div>
+        <>
+          <div
+            className={styles.removebutton}
+            onClick={handleRemoveFromLibrary}
+          >
+            ✖
+          </div>
+        </>
       )}
       <img
         onError={handleImageErrorFallback}

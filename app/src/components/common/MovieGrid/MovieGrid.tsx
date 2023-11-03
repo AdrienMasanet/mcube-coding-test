@@ -1,9 +1,9 @@
-import { MovieBase } from "../../../types/Movie";
+import { LibraryMovie, MovieBase } from "../../../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
 import styles from "./MovieGrid.module.css";
 
 type MovieGridProps = {
-  movies: MovieBase[];
+  movies: MovieBase[] | LibraryMovie[];
   personalLibraryMovieGrid?: boolean;
 };
 
