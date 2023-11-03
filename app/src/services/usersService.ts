@@ -75,13 +75,6 @@ const usersService = {
       const currentUserId = localStorage.getItem("currentUserId");
       if (!currentUserId) return null;
 
-      console.log(
-        currentUserId,
-        JSON.stringify({
-          movieId: tmdbMovieId,
-        }),
-      );
-
       const response = await fetch(
         `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/me/add-movie-to-library`,
         {
@@ -111,7 +104,7 @@ const usersService = {
       if (!currentUserId) return;
 
       const response = await fetch(
-        `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/me/remove-movie-from-library?movieid=${tmdbMovieId}`,
+        `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/me/remove-movie-from-library?movieId=${tmdbMovieId}`,
         {
           method: "DELETE",
           headers: {
