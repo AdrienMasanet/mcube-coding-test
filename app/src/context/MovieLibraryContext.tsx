@@ -54,6 +54,7 @@ export const MovieLibraryProvider = ({
   };
 
   useEffect(() => {
+    setMovieLibrary([]);
     const getCurrentMovieLibrary = async () => {
       const currentMovieLibrary =
         await usersService.getMovieLibrary(sortingOrder);
