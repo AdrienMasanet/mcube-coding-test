@@ -15,6 +15,11 @@ export const MovieLibraryActionsContext = createContext({
     tmdbMovieId;
     return Promise.resolve();
   },
+  rateLibraryMovie: (tmdbMovieId: number, rating: number): Promise<void> => {
+    tmdbMovieId;
+    rating;
+    return Promise.resolve();
+  },
   sortingOrder: MoviesSortBy.ADDED_DATE,
   setSortingOrder: (sortingOrder: MoviesSortBy): void => {
     sortingOrder;
@@ -53,6 +58,23 @@ export const MovieLibraryProvider = ({
     }
   };
 
+  const rateLibraryMovie = async (tmdbMovieId: number, rating: number) => {
+    try {
+      const ratedLibraryMovie: LibraryMovie | null =
+        await usersService.rateMovieFromLibrary(tmdbMovieId, rating);
+      console.log(rateLibraryMovie);
+      if (ratedLibraryMovie) {
+        setMovieLibrary(
+          movieLibrary.map((movie) =>
+            movie.tmdbMovieId === tmdbMovieId ? { ...movie, rating } : movie,
+          ),
+        );
+      }
+    } catch {
+      console.error("Error while trying to rate movie from library");
+    }
+  };
+
   useEffect(() => {
     setMovieLibrary([]);
     const getCurrentMovieLibrary = async () => {
@@ -70,6 +92,7 @@ export const MovieLibraryProvider = ({
         value={{
           addToLibrary,
           removeFromLibrary,
+          rateLibraryMovie,
           sortingOrder,
           setSortingOrder,
         }}
