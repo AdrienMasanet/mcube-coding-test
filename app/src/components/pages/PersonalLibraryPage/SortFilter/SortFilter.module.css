@@ -1,0 +1,12 @@
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.select {
+  padding: 0.1px 0.25px;
+  background-color: transparent;
+  color: var(--color-white);
+  text-align: center;
+}
