@@ -9,7 +9,7 @@ const PersonalLibraryPage = () => {
   return (
     <div className={styles.container}>
       <SortFilter />
-      <MovieGrid movies={movieLibrary} />
+      <MovieGrid movies={movieLibrary} personalLibraryMovieGrid />
     </div>
   );
 };
