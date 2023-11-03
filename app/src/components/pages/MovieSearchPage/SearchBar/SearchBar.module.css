@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+.inputsearch {
+  width: 20em;
+  height: 1em;
+  padding: 0.25em;
+  font-size: 2em;
+  font-weight: 100;
+  text-align: center;
+  border-radius: var(--default-border-radius);
+  box-shadow: var(--shadow-xl);
+  background-color: var(--color-white);
+  opacity: 0.75;
+  transition:
+    all 1s ease-out,
+    opacity 0.25s ease-out;
+}
+
+.inputsearch:hover {
+  box-shadow: var(--shadow-lg);
+  opacity: 1;
+}
