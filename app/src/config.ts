@@ -3,3 +3,5 @@ export const API_DOMAIN = "localhost";
 export const API_PORT = import.meta.env.API_PORT
   ? parseInt(import.meta.env.API_PORT)
   : 3000;
+
+export const DEBOUNCE_SEARCH_MS = 1500;
