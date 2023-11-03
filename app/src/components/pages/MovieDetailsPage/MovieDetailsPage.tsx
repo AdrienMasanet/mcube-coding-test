@@ -12,7 +12,8 @@ import RelatedMovies from "./RelatedMovies/RelatedMovies";
 const MovieDetailsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { addToLibrary } = useMovieLibrary();
+  const { addToLibrary, removeFromLibrary, isMovieInLibrary } =
+    useMovieLibrary();
   const [movie, setMovie] = useState<MovieDetailed | null>(null);
 
   useEffect(() => {
@@ -63,12 +64,21 @@ const MovieDetailsPage = () => {
         </p>
       )}
       <p className={styles.overview}>{movie.overview}</p>
-      <div
-        className={styles.addtolibrary}
-        onClick={() => addToLibrary(movie.tmdbMovieId)}
-      >
-        Add to my library
-      </div>
+      {isMovieInLibrary(movie.tmdbMovieId) ? (
+        <div
+          className={styles.removefromlibrary}
+          onClick={() => removeFromLibrary(movie.tmdbMovieId)}
+        >
+          Remove from my library
+        </div>
+      ) : (
+        <div
+          className={styles.addtolibrary}
+          onClick={() => addToLibrary(movie.tmdbMovieId)}
+        >
+          Add to my library
+        </div>
+      )}
       <RelatedMovies movieId={movie.tmdbMovieId} />
     </div>
   );

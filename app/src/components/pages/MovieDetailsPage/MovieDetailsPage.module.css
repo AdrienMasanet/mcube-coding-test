@@ -37,3 +37,11 @@
   color: var(--color-white);
   cursor: pointer;
 }
+
+.removefromlibrary {
+  padding: 0.15em 0.5em;
+  border-radius: var(--default-border-radius);
+  background-color: var(--color-secondary);
+  color: var(--color-background);
+  cursor: pointer;
+}
