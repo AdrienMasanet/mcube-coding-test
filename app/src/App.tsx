@@ -1,7 +1,11 @@
+import { UserListProvider } from "./context/UserListContext";
+
 function App() {
   return (
     <>
-      <p>Coucou</p>
+      <UserListProvider>
+        <p>Coucou</p>
+      </UserListProvider>
     </>
   );
 }
