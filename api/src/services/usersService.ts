@@ -1,12 +1,11 @@
 import { ObjectId } from "mongodb";
 
-import { TMDB_IMAGES_PATH } from "../config";
 import { getDb } from "../database";
 import LibraryMovie from "../models/LibraryMovie";
 import User from "../models/User";
 import DbCollections from "../types/DbCollections";
+import { MovieDetailed } from "../types/Movie";
 import MoviesSortBy from "../types/MoviesSortBy";
-import { TMDBMovieDetails } from "../types/TMDBApi";
 import moviesServices from "./moviesService";
 
 const usersService = {
@@ -78,20 +77,13 @@ const usersService = {
     userId: string,
     tmdbMovieId: number,
   ): Promise<void> => {
-    const movie: TMDBMovieDetails =
-      await moviesServices.getMovieById(tmdbMovieId);
+    const movie: MovieDetailed = await moviesServices.getMovieById(tmdbMovieId);
 
     const db = getDb();
 
     const newLibraryMovie: LibraryMovie = {
-      title: movie.title,
-      overview: movie.overview,
-      posterPath: `${TMDB_IMAGES_PATH}${movie.poster_path}`,
-      releaseDate: movie.release_date
-        ? new Date(movie.release_date)
-        : undefined,
+      ...movie,
       userId: new ObjectId(userId),
-      tmdbMovieId: tmdbMovieId,
       createdAt: new Date(),
     };
 
