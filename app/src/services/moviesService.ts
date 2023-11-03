@@ -33,6 +33,24 @@ const moviesService = {
       throw new Error("API request failed");
     }
   },
+
+  getRelatedMovies: async (tmdbMovieId: number): Promise<MovieBase[]> => {
+    try {
+      const response = await fetch(
+        `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/movies/${tmdbMovieId}/related`,
+        { method: "GET" },
+      );
+
+      if (response.status !== 200) throw new Error("API request failed");
+      const result: MovieBase[] = await response.json();
+      console.log(
+        `${API_PROTOCOL}://${API_DOMAIN}:${API_PORT}/movies/${tmdbMovieId}/related`,
+      );
+      return result;
+    } catch {
+      throw new Error("API request failed");
+    }
+  },
 };
 
 export default moviesService;
