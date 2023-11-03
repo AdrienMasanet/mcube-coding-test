@@ -7,6 +7,7 @@
   --color-white: #fffffe;
   --color-black: #010101;
 
+  --shadow-hard: 2px 2px 0 var(--color-black);
   --shadow-sm: 0 0 5px var(--color-black);
   --shadow-md: 1px 1px 10px var(--color-black);
   --shadow-lg: 2px 2px 20px var(--color-black);
