@@ -1,11 +1,7 @@
 import { TMDB_API_KEY, TMDB_BASE_URL } from "../config";
 import { TMDB_IMAGES_PATH } from "../config";
 import { MovieBase, MovieDetailed } from "../types/Movie";
-import {
-  TMDBMovieBase,
-  TMDBMovieDetailed,
-  TMDBResponse,
-} from "../types/TMDBApi";
+import { TMDBMovieDetailed, TMDBResponse } from "../types/TMDBApi";
 
 const moviesServices = {
   getMoviesBySearch: async (searchString: string): Promise<MovieBase[]> => {
@@ -51,13 +47,24 @@ const moviesServices = {
     return parsedMovie;
   },
 
-  getRelatedMovies: async (tmdbMovieId: number): Promise<TMDBMovieBase> => {
+  getRelatedMovies: async (tmdbMovieId: number): Promise<MovieBase[]> => {
     const response = await fetch(
       `${TMDB_BASE_URL}movie/${tmdbMovieId}/similar?api_key=${TMDB_API_KEY}`,
     );
     if (response.status !== 200) throw new Error("TMDB request failed");
-    const result = await response.json();
-    return result;
+    const result: TMDBResponse = await response.json();
+    const parsedMovies: MovieBase[] = result.results.map(
+      (tmdbMovie) =>
+        ({
+          title: tmdbMovie.title,
+          posterPath: `${TMDB_IMAGES_PATH}${tmdbMovie.poster_path}`,
+          releaseDate: tmdbMovie.release_date
+            ? new Date(tmdbMovie.release_date)
+            : null,
+          tmdbMovieId: tmdbMovie.id,
+        }) as MovieBase,
+    );
+    return parsedMovies.slice(0, 3);
   },
 };
 
