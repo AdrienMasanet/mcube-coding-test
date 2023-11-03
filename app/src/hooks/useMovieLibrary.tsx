@@ -10,12 +10,17 @@ const useMovieLibrary = () => {
   const { addToLibrary, removeFromLibrary, sortingOrder, setSortingOrder } =
     useContext(MovieLibraryActionsContext);
 
+  const isMovieInLibrary = (tmdbMovieId: number) => {
+    return movieLibrary.some((movie) => movie.tmdbMovieId === tmdbMovieId);
+  };
+
   return {
     movieLibrary,
     addToLibrary,
     removeFromLibrary,
     sortingOrder,
     setSortingOrder,
+    isMovieInLibrary,
   };
 };
 
