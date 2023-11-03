@@ -17,7 +17,6 @@ const RelatedMovies = ({ movieId }: RelatedMoviesProps) => {
       try {
         const fetchedRelatedMovies: MovieBase[] =
           await moviesService.getRelatedMovies(movieId);
-        console.log(fetchRelatedMovies);
         setRelatedMovies(fetchedRelatedMovies);
       } catch {
         setRelatedMovies([]);
