@@ -15,6 +15,7 @@ export const MovieLibraryActionsContext = createContext({
     tmdbMovieId;
     return Promise.resolve();
   },
+  sortingOrder: MoviesSortBy.ADDED_DATE,
   setSortingOrder: (sortingOrder: MoviesSortBy): void => {
     sortingOrder;
   },
@@ -62,14 +63,15 @@ export const MovieLibraryProvider = ({
     if (loggedInUser) getCurrentMovieLibrary();
   }, [loggedInUser, sortingOrder]);
 
-  useEffect(() => {
-    console.log(movieLibrary);
-  }, [movieLibrary]);
-
   return (
     <MovieLibraryContext.Provider value={movieLibrary}>
       <MovieLibraryActionsContext.Provider
-        value={{ addToLibrary, removeFromLibrary, setSortingOrder }}
+        value={{
+          addToLibrary,
+          removeFromLibrary,
+          sortingOrder,
+          setSortingOrder,
+        }}
       >
         {children}
       </MovieLibraryActionsContext.Provider>
