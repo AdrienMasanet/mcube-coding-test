@@ -10,7 +10,7 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
   return (
     <div className={styles.container}>
       {movies.map((movie: MovieBase) => (
-        <MovieCard movie={movie} />
+        <MovieCard key={movie.tmdbMovieId} movie={movie} />
       ))}
     </div>
   );
