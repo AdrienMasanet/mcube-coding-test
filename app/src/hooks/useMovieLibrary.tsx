@@ -7,8 +7,13 @@ import {
 
 const useMovieLibrary = () => {
   const movieLibrary = useContext(MovieLibraryContext);
-  const { addToLibrary, removeFromLibrary, sortingOrder, setSortingOrder } =
-    useContext(MovieLibraryActionsContext);
+  const {
+    addToLibrary,
+    removeFromLibrary,
+    rateLibraryMovie,
+    sortingOrder,
+    setSortingOrder,
+  } = useContext(MovieLibraryActionsContext);
 
   const isMovieInLibrary = (tmdbMovieId: number) => {
     return movieLibrary.some((movie) => movie.tmdbMovieId === tmdbMovieId);
@@ -17,6 +22,7 @@ const useMovieLibrary = () => {
   return {
     movieLibrary,
     addToLibrary,
+    rateLibraryMovie,
     removeFromLibrary,
     sortingOrder,
     setSortingOrder,
