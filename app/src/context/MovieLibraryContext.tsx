@@ -36,7 +36,7 @@ export const MovieLibraryProvider = ({
     try {
       const newLibraryMovie: LibraryMovie | null =
         await usersService.addMovieToLibrary(tmdbMovieId);
-      if (newLibraryMovie) setMovieLibrary([...movieLibrary, newLibraryMovie]);
+      if (newLibraryMovie) setMovieLibrary([newLibraryMovie, ...movieLibrary]);
     } catch {
       console.error("Error while trying to add movie to library");
     }
