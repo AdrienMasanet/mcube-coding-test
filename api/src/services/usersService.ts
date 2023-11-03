@@ -76,7 +76,7 @@ const usersService = {
   addMovieToUserLibrary: async (
     userId: string,
     tmdbMovieId: number,
-  ): Promise<void> => {
+  ): Promise<LibraryMovie | null> => {
     const movie: MovieDetailed = await moviesServices.getMovieById(tmdbMovieId);
 
     const db = getDb();
@@ -95,11 +95,9 @@ const usersService = {
       { $push: { movieLibrary: newLibraryMovie } },
     );
 
-    if (result.modifiedCount === 0) {
-      throw new Error(
-        `Failed to add movie to user ${userId}'s library. The user id could be wrong or the movie may already be in the library`,
-      );
-    }
+    if (result.modifiedCount === 0) return null;
+
+    return newLibraryMovie;
   },
 
   removeMovieFromUserLibrary: async (

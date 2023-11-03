@@ -48,11 +48,12 @@ const meController = {
     try {
       const movieId: number = parseInt(req.body.movieId);
       if (isNaN(movieId)) return res.status(400).send("Invalid movieId");
-      await usersService.addMovieToUserLibrary(
+      const addedLibraryMovie = await usersService.addMovieToUserLibrary(
         res.locals["userid"] as string,
         movieId,
       );
-      return res.send("Movie added to your library !");
+      if (addedLibraryMovie) return res.status(201).json(addedLibraryMovie);
+      return res.status(304);
     } catch {
       return res.status(500).send("Error while adding movie to your library");
     }
@@ -66,7 +67,7 @@ const meController = {
         res.locals["userid"] as string,
         movieId,
       );
-      return res.send("Movie removed from your library !");
+      return res.status(204);
     } catch {
       return res
         .status(500)
@@ -89,7 +90,7 @@ const meController = {
         rating,
       );
 
-      return res.send("Movie rated successfully !");
+      return res.status(200).send("Movie rated successfully !");
     } catch (error) {
       return res.status(500).send("Error while rating movie in your library");
     }
