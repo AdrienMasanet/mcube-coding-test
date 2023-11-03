@@ -1,4 +1,6 @@
 .container {
   flex: 1;
+  max-width: 70em;
+  margin: auto;
   padding: 0.5em;
 }
