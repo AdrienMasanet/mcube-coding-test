@@ -1,4 +1,4 @@
-import UserSelect from "../UserSelect/UserSelect";
+import UserSelect from "./UserSelect/UserSelect";
 import styles from "./TopBar.module.css";
 
 const TopBar = () => {

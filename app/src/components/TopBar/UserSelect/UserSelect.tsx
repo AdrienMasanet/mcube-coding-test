@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 
-import useAuthentication from "../../hooks/useAuthentication";
-import useUserList from "../../hooks/useUserList";
-import User from "../../types/User";
+import useAuthentication from "../../../hooks/useAuthentication";
+import useUserList from "../../../hooks/useUserList";
+import User from "../../../types/User";
 import styles from "./UserSelect.module.css";
 
 const UserSelect = () => {
