@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import moviesService from "../../../services/moviesService";
 import { MovieDetailed } from "../../../types/Movie";
-import styles from "./MovieDetailsPage.module.css";
 import BackButton from "../../common/BackButton/BackButton";
+import styles from "./MovieDetailsPage.module.css";
+import RelatedMovies from "./RelatedMovies/RelatedMovies";
 
 const MovieDetailsPage = () => {
   const location = useLocation();
@@ -60,6 +61,7 @@ const MovieDetailsPage = () => {
         </p>
       )}
       <p className={styles.overview}>{movie.overview}</p>
+      <RelatedMovies movieId={movie.tmdbMovieId} />
     </div>
   );
 };
