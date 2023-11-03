@@ -1,9 +1,13 @@
+import useMovieLibrary from "../../../hooks/useMovieLibrary";
+import MovieGrid from "../../common/MovieGrid/MovieGrid";
 import styles from "./PersonalLibraryPage.module.css";
 
 const PersonalLibraryPage = () => {
+  const { movieLibrary } = useMovieLibrary();
+
   return (
     <div className={styles.container}>
-      <p>PersonalLibraryPage</p>
+      <MovieGrid movies={movieLibrary} />
     </div>
   );
 };
