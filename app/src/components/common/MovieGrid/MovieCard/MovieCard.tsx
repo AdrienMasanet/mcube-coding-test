@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useMovieLibrary from "../../../../hooks/useMovieLibrary";
 import { LibraryMovie, MovieBase } from "../../../../types/Movie";
 import styles from "./MovieCard.module.css";
+import Rating from "./Rating/Rating";
 
 type MovieCardProps = {
   movie: MovieBase | LibraryMovie;
@@ -45,6 +46,7 @@ const MovieCard = ({ movie, personalLibraryMovieCard }: MovieCardProps) => {
           >
             ✖
           </div>
+          <Rating movie={movie as LibraryMovie} />
         </>
       )}
       <img
